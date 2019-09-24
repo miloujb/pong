@@ -6,6 +6,11 @@ wn.bgcolor("black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
+# Points
+
+points_a = 0
+points_b = 0
+
 # Paddle A
 
 paddle_a = turtle.Turtle()
@@ -37,6 +42,16 @@ ball.penup()
 ball.goto(0, 0)
 ball.dx = 0.2
 ball.dy = 0.2
+
+# Scoring
+
+score = turtle.Turtle()
+score.speed(0)
+score.color("white")
+score.penup()
+score.hideturtle()
+score.goto(0, 260)
+score.write("Player A: 0 Player B: 0", align="center", font=("Courier", 24, "normal"))
 
 #Function
 
@@ -90,10 +105,16 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.dx *= -1
+        points_a += 1
+        score.clear()
+        score.write("Player A: {} Player B: {}".format(points_a, points_b), align="center", font=("Courier", 24, "normal"))
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx *= -1
+        points_b += 1
+        score.clear()
+        score.write("Player A: {} Player B: {}".format(points_a, points_b), align="center", font=("Courier", 24, "normal"))
 
     # Collisions
 
